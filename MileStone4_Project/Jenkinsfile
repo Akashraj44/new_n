@@ -1,0 +1,23 @@
+pipeline{
+	agent any
+	stages{
+		stage('Checkout'){
+			steps{
+				git branch : 'master', url: 'https://github.com/Akashraj44/WIPRO_PROJECT.git'
+			}
+		}
+		stage('Test'){
+			steps{
+				bat 'mvn test'
+			}
+		}
+	}
+	post {
+		success{
+			echo 'Build Successful'
+		}
+		failure{
+			echo 'Build Failed'
+		}
+	}
+}
